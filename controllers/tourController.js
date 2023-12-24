@@ -42,6 +42,7 @@ const getAllTours = async(req, res)=> {
 
 const getTour = async (req, res) => {    
     // Tour.findOne({ _id: req,params.id})
+    //const tours = await Tour.findById(req.params.id).populate('guides')
         const tour = await Tour.findById(req.params.id).populate('reviews')//.populate({
             //path:'guides', select: '-__v -passwordChangedAt'}); //
         //'id' must match with the variable in the routes

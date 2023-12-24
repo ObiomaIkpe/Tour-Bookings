@@ -12,7 +12,7 @@ const getAllReviews = async(req, res, next) => {
 
     res.status(200).json({
        results: reviews.length,
-       data: {
+       data: { 
         reviews
        } 
     })
