@@ -40,23 +40,25 @@ const getAllTours = async(req, res)=> {
             })    
  }
 
-const getTour = async (req, res) => {    
-    // Tour.findOne({ _id: req,params.id})
-    //const tours = await Tour.findById(req.params.id).populate('guides')
-        const tour = await Tour.findById(req.params.id).populate('reviews')//.populate({
-            //path:'guides', select: '-__v -passwordChangedAt'}); //
-        //'id' must match with the variable in the routes
+// const getTour = async (req, res) => {    
+//     // Tour.findOne({ _id: req,params.id})
+//     //const tours = await Tour.findById(req.params.id).populate('guides')
+//         const tour = await Tour.findById(req.params.id).populate('reviews')//.populate({
+//             //path:'guides', select: '-__v -passwordChangedAt'}); //
+//         //'id' must match with the variable in the routes
 
-    if (!tour){
-        throw new customAPIError('no tour found with that ID', StatusCodes.NOT_FOUND)
-    }
+//     if (!tour){
+//         throw new customAPIError('no tour found with that ID', StatusCodes.NOT_FOUND)
+//     }
 
-    res.status(StatusCodes.OK).json({
-        data : {
-            tour : tour
-        }
-    })
-}
+//     res.status(StatusCodes.OK).json({
+//         data : {
+//             tour : tour
+//         }
+//     })
+// }
+
+const getTour = handleFactory.getOne(Tour, {path: 'reviews'});
 
 const createTour = async(req, res) => {
     
@@ -69,25 +71,28 @@ const createTour = async(req, res) => {
     }
 }
 
-const updateTour = async (req, res, next) => {
+// const updateTour = async (req, res, next) => {
     
-        const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true
-        });
+//         const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+//             new: true,
+//             runValidators: true
+//         });
 
-        if (!tour){
-            throw new customAPIError(`No tour with id:  ${req.params.id} `, StatusCodes.NOT_FOUND)
-        }
+//         if (!tour){
+//             throw new customAPIError(`No tour with id:  ${req.params.id} `, StatusCodes.NOT_FOUND)
+//         }
 
 
-        res.status(StatusCodes.OK).json({
+//         res.status(StatusCodes.OK).json({
             
-            data: {
-                tour: tour
-            }
-        })
-}
+//             data: {
+//                 tour: tour
+//             }
+//         })
+// }
+
+const updateTour = handleFactory.updateOne(Tour)
+
 
 
  const deleteTour = handleFactory.deleteOne(Tour);

@@ -3,6 +3,7 @@ const multer = require('multer')
 const User = require('../models/usersModel')
 const customAPIError = require('../errors/customAPIError');
 const { StatusCodes} = require('http-status-codes');
+const handleFactory  = require('../controllers/handleFactory')
 
 
 
@@ -88,12 +89,15 @@ const deleteMe = async (req,res) => {
 }
 
 
-const deleteUser = (req,res) => {
-    res.status(500).json({
-        status: 'error',
-        message: 'this route is not yet defined'
-    })
-}
+// const deleteUser = (req,res) => {
+//     res.status(500).json({
+//         status: 'error',
+//         message: 'this route is not yet defined'
+//     })
+// }
+
+
+const deleteUser = handleFactory.deleteOne(User)
 
 const updateUserData = async (req, res, next) => {
     console.log(req.body)

@@ -21,9 +21,12 @@ router.route('/updateMyPassword').patch(authcontroller.protect,authcontroller.up
 router.route('/updateMe').patch(userController.updateUserData);
 router.route('/deleteMe').delete(authcontroller.protect, userController.deleteMe);
 router.route('/').get(authcontroller.protect, authcontroller.restrictTo('admin'), userController.getAllUsers)
+
 router.route('/').post(userController.createUser)
 router.route('/:id').get(userController.getSingleUser)
 router.route('/:id').patch(userController.updateUser)
+
+//delete user(by admin using te API)
 router.route('/:id').delete(authcontroller.protect, authcontroller.restrictTo('admin'),
 userController.deleteUser);
 
