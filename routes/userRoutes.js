@@ -26,7 +26,7 @@ router.route('/').post(userController.createUser)
 router.route('/:id').get(userController.getSingleUser)
 router.route('/:id').patch(userController.updateUser)
 
-//delete user(by admin using te API)
+//delete user(by admin using the API)
 router.route('/:id').delete(authcontroller.protect, authcontroller.restrictTo('admin'),
 userController.deleteUser);
 

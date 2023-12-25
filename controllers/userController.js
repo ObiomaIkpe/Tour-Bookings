@@ -65,13 +65,16 @@ const getSingleUser = (req, res) => {
     res.status(StatusCodes.OK).send('get single user')
 }
 
-const updateUser = (req,res) => {
+// const updateUser = (req,res) => {
     
-    res.status(500).json({
-        status: 'error',
-        message: 'this route is not yet defined'
-    })
-}
+//     res.status(500).json({
+//         status: 'error',
+//         message: 'this route is not yet defined'
+//     })
+// }
+
+//this controller is for admins, and only for updating data that is not the password
+const updateUser = handleFactory.updateOne(User)
 
 const getMe = (req, res, next) => {
     req.params.id = req.user.id;
